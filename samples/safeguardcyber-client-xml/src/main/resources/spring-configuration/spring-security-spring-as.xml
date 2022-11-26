@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Application context containing authentication
+  - Only used by "filter" artifact.
+  -->
+
+<b:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:b="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd">
+  <client-registrations>
+    <client-registration
+	  registration-id="safeguard-client-oidc"
+      provider-id="spring"
+      client-id="safeguard-client"
+      client-secret="safeguardSecret"
+      authorization-grant-type="authorization_code"
+      redirect-uri="http://127.0.0.1:8086/login/oauth2/code/{registrationId}"
+      scope="openid,profile"
+      client-name="safeguard-client-oidc"/>
+    <client-registration
+	  registration-id="safeguard-client-authorization-code"
+      provider-id="spring"
+      client-id="safeguard-client"
+      client-secret="safeguardSecret"
+      authorization-grant-type="authorization_code"
+      redirect-uri="http://127.0.0.1:8086/authorized"
+      scope="ROLE_SG_MICROSERVICE,ROLE_MALWARE_ACQ_JOB"
+      client-name="safeguard-client-authorization-code"/>
+    <client-registration
+	  registration-id="safeguard-client-client-credentials"
+	  provider-id="spring"
+	  client-id="safeguard-client"
+	  client-secret="safeguardSecret"
+	  authorization-grant-type="client_credentials"
+	  scope="ROLE_SG_MICROSERVICE,ROLE_MALWARE_ACQ_JOB"
+	  client-name="safeguard-client-client-credentials"/>
+    <provider provider-id="spring" issuer-uri="http://localhost:9000"/>
+  </client-registrations>
+</b:beans>

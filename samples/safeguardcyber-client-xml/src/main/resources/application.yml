@@ -1,0 +1,26 @@
+server:
+  port: 8086
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+#    org.springframework.boot.autoconfigure: DEBUG
+
+spring:
+  thymeleaf:
+    cache: false
+
+messages:
+  //base-uri: http://127.0.0.1:8080/safeguard/api/v1/channels
+  base-uri: http://127.0.0.1:8080/safeguard/api/v1/settings/global
+
+sgc.token-uri: http://127.0.0.1:8080/safeguard/api/oauth/token
+client-id: 4JDlntsFsF9yt3r6jewoC3EFsJ73gQUZ
+client-secret: 1mqxBpH75bQPXkc-LVLp-zuaNmGvt5_UDkcFhdxKbVtrfBdNUqiKFexcfBNv5v1A
+
+issuer-uri: ${ISSUER_URI}
+
+oauth2.audience: http://73.15.195.77:8080/safeguard/api/v1/
