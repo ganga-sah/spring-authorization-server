@@ -113,7 +113,7 @@ public class AuthorizationController {
 					.bodyToMono(String.class)
 					.block();
 		} else {
-			// For empty value of token-uri, token will be explicitely created without use of .attributes() call webClient seuence below
+			// For empty value of token-uri, token will be explicitly created without use of .attributes() in webClient call sequence below
 			// This token doesn't have scope for Spring AS, so API call fails for Spring AS,
 			String token = getToken(this.tokenUri, this.clientId, this.clientSecret);
 			System.out.println("***** token="+token);

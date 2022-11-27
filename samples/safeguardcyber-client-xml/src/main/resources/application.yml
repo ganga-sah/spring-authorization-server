@@ -25,6 +25,4 @@ token-uri: # http://127.0.0.1:9000/oauth2/token
 client-id: safeguard-client
 client-secret: safeguardSecret
 
-issuer-uri: ${ISSUER_URI}
-
 oauth2.audience: http://73.15.195.77:8080/safeguard/api/v1/
