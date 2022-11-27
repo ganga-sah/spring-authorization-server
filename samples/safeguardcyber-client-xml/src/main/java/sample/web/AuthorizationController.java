@@ -100,13 +100,14 @@ public class AuthorizationController {
 		MultiValueMap<String, String> bodyValues = new LinkedMultiValueMap<>();
 		bodyValues.add("settingGroup", "SERVER_PROPERTIES");
 		bodyValues.add("settingType", "APWG_ECX_API_ACCESS_TOKEN");
-		String token = getToken(this.sgcTokenUri, this.clientId, this.clientSecret);
-		System.out.println("***** token="+token);
+//		String token = getToken(this.sgcTokenUri, this.clientId, this.clientSecret);
+//		System.out.println("***** token="+token);
 		String messages = this.webClient
 				.post()
-				.uri(buildUri(token, "http://localhost:8080", "/safeguard/api/v1/settings/global"))
+//				.uri(buildUri(token, "http://localhost:8080", "/safeguard/api/v1/settings/global"))
+				.uri(this.messagesBaseUri)
 				.bodyValue(getEcrimeXSettingsRequestBody())
-				//.attributes(clientRegistrationId("safeguard-client-client-credentials"))
+				.attributes(clientRegistrationId("safeguard-client-client-credentials"))
 				.retrieve()
 				.bodyToMono(String.class)
 				.block();
@@ -117,40 +118,40 @@ public class AuthorizationController {
 	}
 
 
-	private URI buildUri(String token, String baseUri, String apiPath) {
-		try {
-			URIBuilder b = new URIBuilder(baseUri);
-			b.setPath(apiPath);
-			b.addParameter("access_token", token);
-			return b.build();
-		} catch (Exception e) {
-			//throw new RuntimeException(e);
-			return null;
-		}
-	}
-
-	private String getToken(String sgcTokenUri, String clientId, String clientSecret) {
-		return this.webClient.post()
-				.uri(buildGetTokenUri(sgcTokenUri, clientId, clientSecret))
-				.retrieve()
-				.bodyToMono(GetTokenResponse.class)
-				.map(GetTokenResponse::getAccessToken)
-				//.retryWhen(RETRY_SPEC)
-				.block();
-	}
-
-	private URI buildGetTokenUri(String sgcTokenUri, String clientId, String clientSecret) {
-		try {
-			URIBuilder b = new URIBuilder(sgcTokenUri);
-			b.addParameter("grant_type", "client_credentials");
-			b.addParameter("client_id", clientId);
-			b.addParameter("client_secret", clientSecret);
-			return b.build();
-		} catch (Exception e) {
-			//throw new RuntimeException(e);
-			return null;
-		}
-	}
+//	private URI buildUri(String token, String baseUri, String apiPath) {
+//		try {
+//			URIBuilder b = new URIBuilder(baseUri);
+//			b.setPath(apiPath);
+//			//b.addParameter("access_token", token);
+//			return b.build();
+//		} catch (Exception e) {
+//			//throw new RuntimeException(e);
+//			return null;
+//		}
+//	}
+//
+//	private String getToken(String sgcTokenUri, String clientId, String clientSecret) {
+//		return this.webClient.post()
+//				.uri(buildGetTokenUri(sgcTokenUri, clientId, clientSecret))
+//				.retrieve()
+//				.bodyToMono(GetTokenResponse.class)
+//				.map(GetTokenResponse::getAccessToken)
+//				//.retryWhen(RETRY_SPEC)
+//				.block();
+//	}
+//
+//	private URI buildGetTokenUri(String sgcTokenUri, String clientId, String clientSecret) {
+//		try {
+//			URIBuilder b = new URIBuilder(sgcTokenUri);
+//			b.addParameter("grant_type", "client_credentials");
+//			b.addParameter("client_id", clientId);
+//			b.addParameter("client_secret", clientSecret);
+//			return b.build();
+//		} catch (Exception e) {
+//			//throw new RuntimeException(e);
+//			return null;
+//		}
+//	}
 
 	//[{"settingGroup":"SERVER_PROPERTIES","settingType":"APWG_ECX_API_ACCESS_TOKEN"}]
 	private List<GetSettingRequestDto> getEcrimeXSettingsRequestBody() {
