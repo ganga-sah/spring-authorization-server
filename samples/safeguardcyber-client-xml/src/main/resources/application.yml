@@ -14,15 +14,28 @@ spring:
     cache: false
 
 messages:
-  //base-uri: http://127.0.0.1:8080/safeguard/api/v1/channels
   base-uri: http://127.0.0.1:8080/safeguard/api/v1/settings/global
+#  base-uri: http://127.0.0.1:8080/safeguard/api/v1/channels
 
-#client-id: 4JDlntsFsF9yt3r6jewoC3EFsJ73gQUZ
-#client-secret: 1mqxBpH75bQPXkc-LVLp-zuaNmGvt5_UDkcFhdxKbVtrfBdNUqiKFexcfBNv5v1A
-# For empty value of token-uri below, no token will be created separately
-token-uri: # http://127.0.0.1:9000/oauth2/token
-# token-uri: http://127.0.0.1:8080/safeguard/api/oauth/token
-client-id: safeguard-client
-client-secret: safeguardSecret
+### For empty value of token-uri below, no token will be created explicitly ###
+token-uri:
+client-id:
+client-secret:
 
-oauth2.audience: http://73.15.195.77:8080/safeguard/api/v1/
+#token-uri: http://127.0.0.1:8080/safeguard/api/oauth/token
+
+### Explict token for Auth0 ###
+#token-uri: https://gsah-mbp.us.auth0.com/oauth/token
+#client-id: ed0Cjk2m8vKJKuwan57OtwqWtQXlxqi5
+#client-secret: 4ZCW6ikNc35DEoJO1XjFw3Km2zQZhyUzBIQOU6OIdxR6iiFRxPFsGQ2zAMFlBghd
+
+### Explict token for Keycloak ###
+#token-uri: http://127.0.0.1:8180/realms/master/protocol/openid-connect/token
+#client-id: messaging-client
+#client-secret: pWXfiOeieGErbZFSOeaeJa8b8maBikwq
+
+### Explict token for Spring AS ###
+#token-uri: http://127.0.0.1:9000/oauth2/token
+#client-id: safeguard-client
+#client-secret: safeguardSecret
+

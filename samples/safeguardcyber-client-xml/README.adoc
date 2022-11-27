@@ -1,5 +1,15 @@
 = Samples
 
+[[results]]
+== Results
+[width="750%"]
+|=======
+|Identity Provider |authorization_code |client_credentials|token by IdP|token via sgc
+
+|Auth0 |Pass: 11/27/2022 |Pass: 11/27/2022|Fail: 500 from http://127.0.0.1:8086/authorize?grant_type=client_credentials|Pass: 11/27/2022
+|Keycloak |Pass: 11/27/2022 |Pass: 11/27/2022|Fail: NPE at org.jboss.resteasy.plugins.server.BaseHttpRequest.getFormParameters(BaseHttpRequest.java:53)|Pass: 11/27/2022
+|Spring Authorization Server |Pass: 11/27/2022 |Pass: 11/27/2022|Fail: SGC Failed to authorize... [hasAuthority('ROLE_SG_MICROSERVICE')]|Fail: SGC Failed to authorize... [hasAuthority('ROLE_SG_MICROSERVICE')]
+|=======
 [[safeguard-sample]]
 == Messages Sample
 
@@ -106,3 +116,14 @@ This token doesn't have scope for Spring AS, so API call fails for Spring AS,
 === Known Issues in Auth0
 ** To avoid SGC error "Encrypted JWT rejected: No JWE key selector is configured", apply workaround to add api audience (http://73.15.195.77:8080/safeguard/api/v1/) in global settings in Auth0 but revert it back after testing
 
+== Known issues in Keycloak
+** With empty token-url, keycloak gives error below for client_credentials:
+WARN  [org.keycloak.events] (executor-thread-21) type=CLIENT_LOGIN_ERROR, realmId=985f6ac3-6d5a-48fc-869f-4360cc21b54b, clientId=messaging-client, userId=null, ipAddress=10.0.1.1, error=invalid_client, grant_type=client_credentials, client_auth_method=client-secret
+** With token-url pointing to keycloak, keycloak gives error below for client_credentials:
+ERROR [org.keycloak.services.error.KeycloakErrorHandler] (executor-thread-21) Uncaught server error: java.lang.NullPointerException
+at org.jboss.resteasy.plugins.server.BaseHttpRequest.getFormParameters(BaseHttpRequest.java:53)
+
+=== Make sure to copy spring-security-[IdP].xml to spring-security.xml to avoid error below in SGC
+DEBUG org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider: getJwt - Failed to authenticate since the JWT was invalid
+ERROR com.openq.qfchat.server.restapi.version1.exception.CustomAuthenticationEntryPoint: commence - Handling error: InvalidBearerTokenException, An error occurred while attempting to decode the Jwt: Signed JWT rejected: Another algorithm expected, or no matching key(s) found
+org.springframework.security.oauth2.server.resource.InvalidBearerTokenException: An error occurred while attempting to decode the Jwt: Signed JWT rejected: Another algorithm expected, or no matching key(s) found
