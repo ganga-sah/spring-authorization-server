@@ -17,10 +17,11 @@ messages:
   //base-uri: http://127.0.0.1:8080/safeguard/api/v1/channels
   base-uri: http://127.0.0.1:8080/safeguard/api/v1/settings/global
 
-#sgc.token-uri: http://127.0.0.1:8080/safeguard/api/oauth/token
 #client-id: 4JDlntsFsF9yt3r6jewoC3EFsJ73gQUZ
 #client-secret: 1mqxBpH75bQPXkc-LVLp-zuaNmGvt5_UDkcFhdxKbVtrfBdNUqiKFexcfBNv5v1A
-sgc.token-uri: http://127.0.0.1:9000/oauth2/token
+# For empty value of token-uri below, no token will be created separately
+token-uri: # http://127.0.0.1:9000/oauth2/token
+# token-uri: http://127.0.0.1:8080/safeguard/api/oauth/token
 client-id: safeguard-client
 client-secret: safeguardSecret
 
