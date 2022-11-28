@@ -18,24 +18,41 @@ messages:
 #  base-uri: http://127.0.0.1:8080/safeguard/api/v1/channels
 
 ### For empty value of token-uri below, no token will be created explicitly ###
+
+sgc:
+  token-uri: http://127.0.0.1:8080/safeguard/api/oauth/token
+
+auth0:
+  token-uri: https://gsah-mbp.us.auth0.com/oauth/token
+  client-id: oCSO8PBNyYqUYJylcuufC6NqEpPc1Zjc
+  client-secret: E2XKWE9dU0NGVNyj4S4cPuPhN_v5KT3jBLb4FUYtXXRo7H8SPLK6vHG8MecFK1Ya
+
+keycloak:
+  token-uri: http://127.0.0.1:8180/realms/master/protocol/openid-connect/token
+  client-id: messaging-client
+  client-secret: pWXfiOeieGErbZFSOeaeJa8b8maBikwq
+
+spring-as:
+  token-uri: http://127.0.0.1:9000/oauth2/token
+  client-id: safeguard-client
+  client-secret: safeguardSecret
+
+### Comment out line below if setting non-empty values for this
 token-uri:
-client-id:
-client-secret:
 
-#token-uri: http://127.0.0.1:8080/safeguard/api/oauth/token
+#token-uri: ${sgc.token-uri}
 
-### Explict token for Auth0 ###
-#token-uri: https://gsah-mbp.us.auth0.com/oauth/token
-#client-id: ed0Cjk2m8vKJKuwan57OtwqWtQXlxqi5
-#client-secret: 4ZCW6ikNc35DEoJO1XjFw3Km2zQZhyUzBIQOU6OIdxR6iiFRxPFsGQ2zAMFlBghd
+### Uncomment below for Auth0 ###
+#token-uri: ${auth0.token-uri}
+client-id: ${auth0.client-id}
+client-secret: ${auth0.client-secret}
 
-### Explict token for Keycloak ###
-#token-uri: http://127.0.0.1:8180/realms/master/protocol/openid-connect/token
-#client-id: messaging-client
-#client-secret: pWXfiOeieGErbZFSOeaeJa8b8maBikwq
+### Uncomment below for keycloak ###
+#token-uri: ${keycloak.token-uri}
+#client-id: ${keycloak.client-id}
+#client-secret: ${keycloak.client-secret}
 
-### Explict token for Spring AS ###
-#token-uri: http://127.0.0.1:9000/oauth2/token
-#client-id: safeguard-client
-#client-secret: safeguardSecret
-
+### Uncomment below for Spring AS ###
+#token-uri: ${spring-as.token-uri}
+#client-id: ${spring-as.client-id}
+#client-secret: ${spring-as.client-secret}

@@ -13,8 +13,8 @@
     <client-registration
 	  registration-id="safeguard-client-oidc"
       provider-id="auth0"
-      client-id="ed0Cjk2m8vKJKuwan57OtwqWtQXlxqi5"
-      client-secret="4ZCW6ikNc35DEoJO1XjFw3Km2zQZhyUzBIQOU6OIdxR6iiFRxPFsGQ2zAMFlBghd"
+      client-id="${auth0.client-id}"
+      client-secret="${auth0.client-secret}"
       authorization-grant-type="authorization_code"
       redirect-uri="http://127.0.0.1:8086/login/oauth2/code/{registrationId}"
       scope="openid,profile"
@@ -22,8 +22,8 @@
     <client-registration
 	  registration-id="safeguard-client-authorization-code"
       provider-id="auth0"
-      client-id="ed0Cjk2m8vKJKuwan57OtwqWtQXlxqi5"
-      client-secret="4ZCW6ikNc35DEoJO1XjFw3Km2zQZhyUzBIQOU6OIdxR6iiFRxPFsGQ2zAMFlBghd"
+      client-id="${auth0.client-id}"
+      client-secret="${auth0.client-secret}"
       authorization-grant-type="authorization_code"
       redirect-uri="http://127.0.0.1:8086/authorized"
       scope="ROLE_SG_MICROSERVICE,ROLE_MALWARE_ACQ_JOB"
@@ -31,8 +31,8 @@
     <client-registration
 	  registration-id="safeguard-client-client-credentials"
 	  provider-id="auth0"
-	  client-id="ed0Cjk2m8vKJKuwan57OtwqWtQXlxqi5"
-	  client-secret="4ZCW6ikNc35DEoJO1XjFw3Km2zQZhyUzBIQOU6OIdxR6iiFRxPFsGQ2zAMFlBghd"
+	  client-id="${auth0.client-id}"
+	  client-secret="${auth0.client-secret}"
 	  authorization-grant-type="client_credentials"
 	  scope="ROLE_SG_MICROSERVICE,ROLE_MALWARE_ACQ_JOB"
 	  client-name="safeguard-client-client-credentials"/>
