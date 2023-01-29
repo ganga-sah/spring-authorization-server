@@ -36,6 +36,7 @@
 	  authorization-grant-type="client_credentials"
 	  scope="ROLE_SG_MICROSERVICE,ROLE_MALWARE_ACQ_JOB"
 	  client-name="safeguard-client-client-credentials"/>
-    <provider provider-id="auth0" issuer-uri="https://gsah-mbp.us.auth0.com/"/>
+	  <provider provider-id="auth0" issuer-uri="${auth0.issuer-uri}"/>bg
+
   </client-registrations>
 </b:beans>

@@ -6,7 +6,7 @@
 |=======
 |Identity Provider |authorization_code |client_credentials|token by IdP|token via sgc
 
-|Auth0 |Pass: 11/27/2022 |Pass: 11/27/2022|Fail: 401 from POST https://gsah-mbp.us.auth0.com/oauth/token?grant_type=client_credentials&client_id=xx&client_secret=yy|Pass: 11/27/2022
+|Auth0 |Pass: 1/28/2023 |Pass: 1/28/2023 if token-uri=(empty)|Fail: 401 from POST https://gsah-mbp.us.auth0.com/oauth/token?grant_type=client_credentials&client_id=xx&client_secret=yy if token-uri=${auth0.token-uri} but works if token-uri=${sgc.token-uri}|Pass: 1/28/2023 if token-uri=${sgc.token-uri}
 |Keycloak |Pass: 11/27/2022 |Pass: 11/27/2022|Fail: NPE at org.jboss.resteasy.plugins.server.BaseHttpRequest.getFormParameters(BaseHttpRequest.java:53)|Pass: 11/27/2022
 |Spring Authorization Server |Pass: 11/27/2022 |Pass: 11/27/2022|Fail: SGC Failed to authorize... [hasAuthority('ROLE_SG_MICROSERVICE')]|Fail: SGC Failed to authorize... [hasAuthority('ROLE_SG_MICROSERVICE')]
 |=======

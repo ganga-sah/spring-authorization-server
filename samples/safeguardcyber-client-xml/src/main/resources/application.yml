@@ -15,17 +15,13 @@ spring:
 
 messages:
   base-uri: http://127.0.0.1:8080/safeguard/api/v1/settings/global
-#  base-uri: http://127.0.0.1:8080/safeguard/api/v1/channels
-
-### For empty value of token-uri below, no token will be created explicitly ###
-
-sgc:
-  token-uri: http://127.0.0.1:8080/safeguard/api/oauth/token
 
 auth0:
-  token-uri: https://gsah-mbp.us.auth0.com/oauth/token
-  client-id: oCSO8PBNyYqUYJylcuufC6NqEpPc1Zjc
-  client-secret: E2XKWE9dU0NGVNyj4S4cPuPhN_v5KT3jBLb4FUYtXXRo7H8SPLK6vHG8MecFK1Ya
+  # REPLACE TENANT_NAME BY YOUR VALUE
+  issuer-uri: https://TENANT_NAME.us.auth0.com/
+  token-uri: ${auth0.issuer-uri}/oauth/token
+  client-id: urPJLUMFwkjRfruDfYHOHJi2aLM4a4bb
+  client-secret: NwLwsq2LSwSCFAxv3uMQmUN2C9z0uGQOO1hVFtyi_XdXn5yVxHts_Jwatnc6qL8q
 
 keycloak:
   token-uri: http://127.0.0.1:8180/realms/master/protocol/openid-connect/token
@@ -37,12 +33,16 @@ spring-as:
   client-id: safeguard-client
   client-secret: safeguardSecret
 
-### Comment out line below if setting non-empty values for this
-token-uri:
-
-#token-uri: ${sgc.token-uri}
+### For empty value of token-uri below, no token will be created explicitly ###
+sgc:
+  token-uri: http://127.0.0.1:8080/safeguard/api/oauth/token
+### Set token-uri to empty for implicit token creation
+#token-uri:
+### Set token-uri to non-empty for explicit token creation
+token-uri: ${sgc.token-uri}
 
 ### Uncomment below for Auth0 ###
+# token-uri below gives 401 UNAUTHORIZED from POST to Auth0 but works if token-uri=${sgc.token-uri}
 #token-uri: ${auth0.token-uri}
 client-id: ${auth0.client-id}
 client-secret: ${auth0.client-secret}
